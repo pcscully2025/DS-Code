@@ -1,1 +1,27 @@
+import numpy as np
+import pandas as pd
+from matplotlib.pyplot import subplots
 
+pip install ISLP;
+import statsmodels.api as sm
+from statsmodels.stats.outliers_influence import variance_inflation_factor as VIF 
+from statsmodels.stats.anova import anova_lm
+from ISLP import load_data
+from ISLP.models import (ModelSpec as MS,
+summarize , poly)
+
+#importing data set
+Auto = load_data("Auto")
+Auto.columns
+X = pd.DataFrame({'intercept': np.ones(Auto.shape[0]),
+'horsepower': Auto['horsepower']})
+X[:397]
+
+y=Auto['mpg']
+
+#8.a
+modela = sm.OLS(y,X)
+resultsa = modela.fit()
+summarize(resultsa)
+
+#8.b
